@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets
 {
-    public class TriangleFactory
+    public static class TriangleFactory
     {
         public static Triangle CreateTriangle()
         {

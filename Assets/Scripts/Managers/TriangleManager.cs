@@ -10,11 +10,16 @@ public class TriangleManager : MonoBehaviour
     public PlayerColor CurrentColor { get; set; }
     private const float Alpha = 1f;
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         currentGameObject = gameObject;
-        GameBuilderService.instance.OnAllGameObjectReady += HandleGameObjectReady;
+        Debug.Log("Triangle Manager is awake");
+
+        //GameBuilderService.instance.OnAllGameObjectReady += HandleGameObjectReady;
+
     }
+
 
     private void HandleGameObjectReady()
     {

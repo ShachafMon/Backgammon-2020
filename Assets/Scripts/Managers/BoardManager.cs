@@ -9,8 +9,7 @@ public class BoardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Test");
-        GameBuilderService.instance.OnAllGameObjectReady += HandleGameObjectReady;
+        //GameBuilderService.instance.OnAllGameObjectReady += HandleGameObjectReady;
     }
 
     private void HandleGameObjectReady()
@@ -18,6 +17,10 @@ public class BoardManager : MonoBehaviour
         Debug.Log("Handled from Board");
     }
 
+    private void Awake()
+    {
+        Debug.Log("Board Manager is awake");
+    }
     // Update is called once per frame
     void Update()
     {

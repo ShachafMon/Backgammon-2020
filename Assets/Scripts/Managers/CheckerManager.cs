@@ -12,19 +12,22 @@ namespace Assets
         private GameObject currentGameObject;
         public Checker currentChecker { get; set; }
 
-        private void Start()
+        private void Awake()
         {
             this.currentGameObject = gameObject;
-    }
+        }
+        private void Start()
+        {
+        }
         private void Update()
         {
-            
+
         }
 
         public void onCheckerClicked()
         {
             this.gameObject.transform.Translate(Vector3.up);
         }
-        
+
     }
 }

@@ -13,17 +13,17 @@ public class GameBuilderService : MonoBehaviour
 
     public static GameBuilderService instance;
     public event Action OnAllGameObjectReady;
-    public Triangle[] Triangles { get; set; }
-    public void MakeSingleton()
-    {
-        if (instance == null)
-            Destroy(gameObject);
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
+    public Triangle[] Triangles { get; set; } = new Triangle[24];
+    //public void MakeSingleton()
+    //{
+    //    if (instance == null)
+    //        Destroy(gameObject);
+    //    else
+    //    {
+    //        instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //}
 
     internal Triangle GetTriangle(int id)
     {
@@ -32,22 +32,33 @@ public class GameBuilderService : MonoBehaviour
 
     private void Awake()
     {
-        MakeSingleton();
-        Triangles = new Triangle[24];
+        //MakeSingleton();
+        instance = this;
+        Debug.Log("Game Builder is awake");
     }
 
     private void Start()
     {
-        Debug.Log("Game Builder Service");
+        Debug.Log("Creating array");
         var startGameData = new StartGameDataService();
         for (int i = 0; i < 24; i++)
         {
-            var data = startGameData.triangleStartingDataById[i];
+            Debug.Log(i);
+            TriangleStartingData data;
+            startGameData.triangleStartingDataById.TryGetValue("T" + i, out data);
             if (data != null)
-                Triangles[i] = TriangleFactory.CreateTriangle(data);
+            {
+                var tri = TriangleFactory.CreateTriangle(data);
+                Triangles[i] = tri;
+            }
             else
-                Triangles[i] = TriangleFactory.CreateTriangle();
+            {
+                var tria = TriangleFactory.CreateTriangle();
+                Triangles[i] = tria;
+            }
         }
+        Debug.Log("Array created");
+
         GameIsReadyToPlay();
     }
 
