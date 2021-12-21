@@ -20,7 +20,6 @@ namespace Assets
             triangleStartingDataById.Add("T16", new TriangleStartingData { Color = PlayerColor.Black, Count = 3 });
             triangleStartingDataById.Add("T18", new TriangleStartingData { Color = PlayerColor.Black, Count = 5 });
             triangleStartingDataById.Add("T23", new TriangleStartingData { Color = PlayerColor.White, Count = 2 });
-            Debug.Log(triangleStartingDataById["T23"]);
         }
        
 

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class TriangleManager : MonoBehaviour
 {
-     public Triangle Triangle { get; set; }
+    public Triangle Triangle { get; set; }
     private GameObject currentGameObject;
-    public PlayerColor CurrentColor { get; set; }
+    public PlayerColor ? CurrentColor { get; set; }
     private const float Alpha = 1f;
     // Start is called before the first frame update
 
@@ -16,7 +16,7 @@ public class TriangleManager : MonoBehaviour
         currentGameObject = gameObject;
         Debug.Log("Triangle Manager is awake");
 
-        //GameBuilderService.instance.OnAllGameObjectReady += HandleGameObjectReady;
+        GameBuilderService.instance.OnAllGameObjectReady += HandleGameObjectReady;
 
     }
 
@@ -25,9 +25,9 @@ public class TriangleManager : MonoBehaviour
     {
         var triangleID = int.Parse(gameObject.name.Substring(1));
         Triangle = GameBuilderService.instance.GetTriangle(triangleID);
-        CurrentColor = Triangle.CheckerManagers.Peek().Color;
-        Debug.Log(triangleID);
-        Debug.Log(Triangle.CheckerManagers.Peek());
+        Triangle.Id = triangleID;
+        CurrentColor = Triangle.CurrentColorOwner;
+        Debug.Log(Triangle.Id);
     }
 
     public void OnCheckerClicked()
